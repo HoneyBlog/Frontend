@@ -4,14 +4,14 @@
 }
 
 #wrapper {
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 1fr 5fr;
   grid-template-areas: 
     "header main";
 }
 
 main {
-  grid-area: main;
+  grid-area: 'main';
   display: flex;
   flex-flow: column wrap;
 }

@@ -1,0 +1,10 @@
+.postHome {
+    grid-area: 'main';
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+
+}

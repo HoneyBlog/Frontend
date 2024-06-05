@@ -1,21 +1,17 @@
-import React from 'react'
-import './App.css'
-import LoginPage from './pages/LoginPage/loginPage'
-import Header from './components/Header/Header'
+import React from "react";
+import "./App.css";
+import LoginPage from "./pages/LoginPage/loginPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
-
   return (
     <>
       <div id="wrapper">
-        <Header />
-        <main>
-          <h1>main</h1>
-        </main>
+        <HomePage />
       </div>
       {/* <LoginPage /> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
