@@ -1,40 +1,53 @@
-import React from 'react'
-import Box from '@mui/material/Box';
+//jsx
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 
-import './loginPage.styled.css'
+import { LoginForm, ColorButton, Screen, Title ,Logo} from './LoginPage.styled';
 
 export default function LoginPage() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    function onSubmit(event) {
+        event.preventDefault();
+        
+        console.log('username:', username);
+        console.log('password:', password);
+    }
+
     return (
-        <div className='screen'>
-            <img src='../../../assets/Logo.png' alt='honey logo' />
-            <h1>Honey Blog</h1>
-            <Box
-                component="form"
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <div>
+        <Screen>
+            <Logo src="../../../assets/Logo.png" alt="honey logo" />
+            <Title>Honey Blog</Title>
+            <form onSubmit={onSubmit}>
+                <LoginForm>
                     <TextField
                         required
-                        id="outlined-required"
+                        id="outlined-username-input"
                         label="Username"
-                        defaultValue="Username"
-                        className='input'
+                        name="username"
+                        type="text"
+                        autoComplete="current-username"
+                        className="custom-input"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <TextField
                         required
                         id="outlined-password-input"
                         label="Password"
+                        name="password"
                         type="password"
                         autoComplete="current-password"
-                        className='input'
+                        className="custom-input"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
-                </div>
-            </Box>
-        </div>
-    )
+                    <ColorButton type="submit" variant="contained" color="primary">
+                        Login
+                    </ColorButton>
+                </LoginForm>
+            </form>
+        </Screen>
+    );
 }
