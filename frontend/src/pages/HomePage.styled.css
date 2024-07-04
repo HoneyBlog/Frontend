@@ -1,10 +1,36 @@
-.postHome {
-    grid-area: 'main';
+/* src/pages/HomePage.styled.css */
+
+.container {
     display: flex;
-    justify-content: center;
-    align-items: center; 
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: #2E2E2E;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .postHome {
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
-
-}
+    background-color: transparent;
+    width: 60vw;
+  }
+  
+  .sidebar {
+    width: 300px;
+    padding: 20px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  

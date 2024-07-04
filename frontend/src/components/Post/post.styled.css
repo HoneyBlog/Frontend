@@ -1,4 +1,4 @@
-.post-container {
+/* .post-container {
     position: relative;
     flex-direction: column;
     align-items: center;
@@ -61,4 +61,75 @@
     align-items: center;
     justify-content: space-between; 
     width: 100%; 
-}
+} */
+
+
+/* src/components/Post/post.styled.css */
+/* src/components/Post/post.styled.css */
+
+.post-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1c1c1e;
+    padding: 10px;
+    border-radius: 10px;
+    width: 40vw;
+    min-height: 15vh;
+    gap: 10px;
+  }
+  
+  .emoji-picker-container {
+    position: absolute;
+    top: 110px;
+    width: 100%;
+    bottom: calc(100% + 10px);
+    left: 0;
+    z-index: 1;
+  }
+  
+  .post-avatar {
+    margin-right: 10px;
+  }
+  
+  #post-button {
+    background-color: #BEA6D8;
+    border-radius: 100px;
+  }
+  
+  .post-textfield {
+    color: white;
+    width: 100%;
+  }
+  
+  .post-textfield input::placeholder {
+    color: white;
+  }
+  
+  .post-textfield input {
+    color: white;
+    white-space: pre-wrap;
+    overflow: visible;
+    word-wrap: break-word;
+  }
+  
+  .post-icon {
+    color: #9b9b9b;
+  }
+  
+  .post-row1 {
+    display: grid;
+    grid-template-columns: 0.2fr 3fr;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .post-row2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  

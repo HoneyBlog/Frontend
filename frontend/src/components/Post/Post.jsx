@@ -5,11 +5,13 @@ import IconButton from "@mui/material/IconButton";
 import ImageIcon from "@mui/icons-material/Image";
 import GifIcon from "@mui/icons-material/Gif";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import EventIcon from "@mui/icons-material/Event";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import EmojiPicker from "emoji-picker-react";
+// import Button from '../Button/Button';
+
 import "./post.styled.css";
+
 
 const Postcomponent = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
