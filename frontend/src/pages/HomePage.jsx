@@ -1,28 +1,9 @@
-// import React from "react";
-// import Header from "../components/Header/Header";
-// import Postcomponent from "../components/Post/Post";
-// import Search from "../components/Search/Search";
-
-// import "./HomePage.styled.css";
-
-// const HomePage = () => {
-//   return (
-//     <>
-//       <Header />
-//       <main className="postHome">
-//         <Postcomponent />
-//       </main>
-//     </>
-//   );
-// };
-
-// export default HomePage;
-// src/pages/HomePage.jsx
 import React from 'react';
 import Header from '../components/Header/Header';
 import Postcomponent from '../components/Post/Post';
 import Search from '../components/Search/Search';
 import './HomePage.styled.css';
+import SearchContent from '../components/SearchContent/SearchContent';
 
 const HomePage = () => {
   const handleSearchChange = (e) => {
@@ -37,7 +18,10 @@ const HomePage = () => {
           <Postcomponent />
         </div>
         <aside className="sidebar">
-          <Search placeholder="Search..." handleChange={handleSearchChange} />
+        <div className="search-container">
+            <Search placeholder="Search HPBlog" handleChange={handleSearchChange} />
+          </div>
+          <SearchContent />
 
         </aside>
       </div>
