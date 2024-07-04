@@ -2,7 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import {userLogin} from '../../apis/users.api'
-import './loginPage.styled.css'
+import './LoginPage.styled.css'
 
 export default function LoginPage() {
     return (
