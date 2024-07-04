@@ -20,6 +20,9 @@ export default function LoginPage() {
 
         try {
             const response = await userLogin(username, password);
+            if(response) {
+                window.location.href = '/';
+            }
             console.log('Response: ', response);
         } catch (error) {
             console.error('Failed to login:', error);
