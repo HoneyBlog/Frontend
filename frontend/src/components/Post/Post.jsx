@@ -24,11 +24,10 @@ const Postcomponent = () => {
     <div className="post-container">
       <div className="post-row1">
         <Avatar alt="User Avatar" className="post-avatar" />
-        <Typography>
           <TextField
             placeholder="What's happening?"
             multiline
-            rowsMax={4}
+            maxRows={4}
             variant="standard"
             InputProps={{
               disableUnderline: true,
@@ -38,7 +37,7 @@ const Postcomponent = () => {
             value={textFieldValue}
             onChange={(e) => setTextFieldValue(e.target.value)}
           />
-        </Typography>
+
       </div>
       <div className="post-row2">
         <div>
@@ -55,8 +54,7 @@ const Postcomponent = () => {
             <EmojiEmotionsIcon className="post-icon" />
           </IconButton>
         </div>
-        <Button variant="contained" text="Post" fontSize="0.9rem" paddingUp="10px" paddingRight="20px" />
-
+        <Button variant="contained" text="Post" paddingUpDown="10px" paddingRightLeft="20px" fontSize="0.9rem" />
       </div>
       <div className="emoji-picker-container">
         {showEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick} />}

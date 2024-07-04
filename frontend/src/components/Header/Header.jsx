@@ -6,8 +6,16 @@ const homeIcon = '../../assets/home.png';
 const seachIcon = '../../assets/search.png';
 const profileIcon = '../../assets/user.png';
 const logoutIcon = '../../assets/logout.png';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+    const navigate = useNavigate();
+    const user = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    }
 
     return (
         <FixedHeaderContent>
@@ -28,12 +36,12 @@ const Header = () => {
                         <IconStyle src={profileIcon} alt="Prpfile" />
                         <NavText>Profile</NavText>
                     </NavItem>
-                    <NavItem to="/login">
+                    <NavItem onClick={handleLogout}>
                         <IconStyle src={logoutIcon} alt="Logout" />
                         <NavText>Logout</NavText>
                     </NavItem>
                 </HeaderItemsContainer>
-                <Button text="Post"></Button>
+                <Button text="Post"  paddingUpDown='15px' paddingRightLeft='40px' fontSize='1.3rem'></Button>
             </HeaderContainer>
             <Line>
                 <line x1="0" y1="0" x2="0" y2="100%" />

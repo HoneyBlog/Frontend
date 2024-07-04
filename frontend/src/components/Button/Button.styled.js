@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const ButtonContainer = styled.button`   
+
+export const ButtonContainer = styled.button`
     background-color: #bea6d8;
     color: #FFFFFF;
     border-radius: 30px;
@@ -9,10 +10,9 @@ export const ButtonContainer = styled.button`
     cursor: pointer;
     transition: 0.2s;
     font-size: ${(props) => props.fontSize || '1.3rem'};
-    padding: ${(props) => props.paddingUp || '15px'} ${(props) => props.paddingRight || '40px'}; 
+    padding: ${(props) => props.paddingUpDown || '15px'} ${(props) => props.paddingRightLeft || '40px'}; 
 
-    &:hover
-    {
+    &:hover {
         background-color: #FFFFFF;
         color: #bea6d8;
     }

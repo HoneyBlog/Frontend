@@ -1,9 +1,13 @@
 import React from 'react';
 import { ButtonContainer } from './Button.styled';
 
-const Button = ({ text, paddingUp, paddingRight, fontSize }) => {
+const Button = ({ text, paddingUpDown, paddingRightLeft, fontSize }) => {
   return (
-    <ButtonContainer fontSize={fontSize} paddingUp={paddingUp} paddingRight={paddingRight} >
+    <ButtonContainer 
+      $fontSize={fontSize} 
+      $paddingUpDown={paddingUpDown} 
+      $paddingRightLeft={paddingRightLeft}
+    >
       {text}
     </ButtonContainer>
   );
