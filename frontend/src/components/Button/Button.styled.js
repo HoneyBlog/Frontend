@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.button`   
-    background-color: #e1bee7;
+    background-color: #BB86FC;
     color: #FFFFFF;
     border-radius: 30px;
     font-size: 1.3rem;
@@ -14,6 +14,6 @@ export const ButtonContainer = styled.button`
     &:hover
     {
         background-color: #FFFFFF;
-        color: #e1bee7;
+        color: #BB86FC;
     }
 `;
