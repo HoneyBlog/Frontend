@@ -27,7 +27,7 @@ const Postcomponent = () => {
           <TextField
             placeholder="What's happening?"
             multiline
-            rowsMax={Infinity}
+            rowsMax={4}
             variant="standard"
             InputProps={{
               disableUnderline: true,
