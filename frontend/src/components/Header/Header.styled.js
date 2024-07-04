@@ -64,8 +64,8 @@ export const SelectedNavText = styled.span`
 
 export const Line = styled.svg`
     opacity: 0.3;
-    fill: #DDD6FF;
-    stroke: #DDD6FF;
+    fill: #BB86FC;
+    stroke: #BB86FC;
     display: flex;
     justify-self: flex-end;
     stroke-width: 5px;
