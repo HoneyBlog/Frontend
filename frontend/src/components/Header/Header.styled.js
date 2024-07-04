@@ -4,7 +4,6 @@ import { NavLink as RouterLink } from "react-router-dom";
 
 export const FixedHeaderContent = styled.div`
     position: fixed;
-    grid-area: header;
     top: 0;
     left: 0;
     width: 20%;

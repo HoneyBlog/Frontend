@@ -14,7 +14,6 @@ function App() {
 
   return (
     <>
-      <div id="wrapper">
         <Router>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
@@ -22,7 +21,6 @@ function App() {
             {/* <Route path="/" element={<Navigate to="/login" />} /> */}
           </Routes>
         </Router>
-      </div>
     </>
   );
 }

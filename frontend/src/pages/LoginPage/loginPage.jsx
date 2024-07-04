@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { Screen, Logo, Title, LoginForm, ColorButton } from './LoginPage.styled';
+import { userLogin } from '../../apis/users.api';
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ export default function LoginPage() {
         setError(null);
 
         try {
-            const response = await UserApi.checkLogin(username, password); 
+            const response = await userLogin(username, password);
             console.log('Response: ', response);
         } catch (error) {
             console.error('Failed to login:', error);

@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 
 
 
-const Screen = styled.div`
+export const Screen = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,17 +14,17 @@ const Screen = styled.div`
     background-color: #2E2E2E;
 `;
 
-const Logo = styled.img`
+export const Logo = styled.img`
     width: 125px;
     margin-bottom: 1rem;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
     margin-bottom: 1rem;
     color: #ffffff;
 `;
 
-const LoginForm = styled(Box)`
+export const LoginForm = styled(Box)`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,7 +63,7 @@ const LoginForm = styled(Box)`
     }
 `;
 
-const ColorButton = styled(Button)`
+export const ColorButton = styled(Button)`
     background-color: #A594B6 !important;
 
     &:hover {
@@ -71,5 +71,3 @@ const ColorButton = styled(Button)`
     }
 `;
 
-
-export { Screen, Logo, Title, LoginForm, ColorButton };
