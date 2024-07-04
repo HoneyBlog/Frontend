@@ -18,7 +18,6 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<HomePage />} />
-            {/* <Route path="/" element={<Navigate to="/login" />} /> */}
           </Routes>
         </Router>
     </>

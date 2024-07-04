@@ -4,6 +4,7 @@ import { Screen, Logo, Title, LoginForm } from './LoginPage.styled';
 import { userLogin } from '../../apis/users.api';
 import Button from '../../components/Button/Button';
 import Alert from '@mui/material/Alert';
+import { useNavigate } from 'react-router-dom';
 
 const errFormMsg = "One of the requirements is not met.";
 
@@ -12,6 +13,17 @@ export default function LoginPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const verfiyForm = () => {  
+        if (username === '' || password === '') {
+            setError(errFormMsg);
+            return false;
+        }
+
+        
+    
+    }
 
     async function onSubmit(event) {
         event.preventDefault();
@@ -21,6 +33,7 @@ export default function LoginPage() {
         try {
             const response = await userLogin(username, password);
             console.log('Response: ', response);
+            navigate('/');
         } catch (error) {
             console.error('Failed to login:', error);
             setError(errFormMsg);
@@ -33,6 +46,7 @@ export default function LoginPage() {
         <Screen>
             <Logo src="../../../assets/Logo.png" alt="honey logo" />
             <Title>Honey Blog</Title>
+            {error && <Alert severity="error" variant="filled">{error}</Alert>}
             <form onSubmit={onSubmit}>
                 <LoginForm>
                     <TextField
@@ -58,7 +72,6 @@ export default function LoginPage() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button type="submit" variant="contained" text={isLoading ? 'Logging in...' : 'Login'} disabled={isLoading} />
-                    {error && <Alert severity="error" variant="filled">{error}</Alert>}
                 </LoginForm>
             </form>
         </Screen>
