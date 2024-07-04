@@ -5,10 +5,9 @@ import IconButton from "@mui/material/IconButton";
 import ImageIcon from "@mui/icons-material/Image";
 import GifIcon from "@mui/icons-material/Gif";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import EmojiPicker from "emoji-picker-react";
-// import Button from '../Button/Button';
+import Button from '../Button/Button'
 
 import "./post.styled.css";
 
@@ -56,9 +55,8 @@ const Postcomponent = () => {
             <EmojiEmotionsIcon className="post-icon" />
           </IconButton>
         </div>
-        <Button variant="contained" id="post-button">
-          Post
-        </Button>
+        <Button variant="contained" text="Post" fontSize="0.9rem" paddingUp="10px" paddingRight="20px" />
+
       </div>
       <div className="emoji-picker-container">
         {showEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick} />}

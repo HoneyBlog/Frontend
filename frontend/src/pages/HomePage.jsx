@@ -30,7 +30,7 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <div id="warpper">
       <Header />
       <div className="container">
         <div className="mainContent">
@@ -38,10 +38,10 @@ const HomePage = () => {
         </div>
         <aside className="sidebar">
           <Search placeholder="Search..." handleChange={handleSearchChange} />
-        
+
         </aside>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,6 @@ import { NavLink as RouterLink } from "react-router-dom";
 
 export const FixedHeaderContent = styled.div`
     position: fixed;
-    grid-area: header;
     top: 0;
     left: 0;
     width: 20%;
@@ -64,8 +63,8 @@ export const SelectedNavText = styled.span`
 
 export const Line = styled.svg`
     opacity: 0.3;
-    fill: #DDD6FF;
-    stroke: #DDD6FF;
+    fill: #BB86FC;
+    stroke: #BB86FC;
     display: flex;
     justify-self: flex-end;
     stroke-width: 5px;

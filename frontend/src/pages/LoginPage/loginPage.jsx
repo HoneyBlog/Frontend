@@ -1,40 +1,64 @@
-import React from 'react'
-import Box from '@mui/material/Box';
+import { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import {userLogin} from '../../apis/users.api'
-import './LoginPage.styled.css'
+import { Screen, Logo, Title, LoginForm, ColorButton } from './LoginPage.styled';
+import { userLogin } from '../../apis/users.api';
 
 export default function LoginPage() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    async function onSubmit(event) {
+        event.preventDefault();
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            const response = await userLogin(username, password);
+            console.log('Response: ', response);
+        } catch (error) {
+            console.error('Failed to login:', error);
+            setError('Invalid username or password.');
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     return (
-        <div className='screen'>
-            <img src='../../../assets/Logo.png' alt='honey logo' />
-            <h1>Honey Blog</h1>
-            <Box
-                component="form"
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <div>
+        <Screen>
+            <Logo src="../../../assets/Logo.png" alt="honey logo" />
+            <Title>Honey Blog</Title>
+            <form onSubmit={onSubmit}>
+                <LoginForm>
                     <TextField
                         required
-                        id="outlined-required"
+                        id="outlined-username-input"
                         label="Username"
-                        defaultValue="Username"
-                        className='input'
+                        name="username"
+                        type="text"
+                        autoComplete="current-username"
+                        className="custom-input"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <TextField
                         required
                         id="outlined-password-input"
                         label="Password"
+                        name="password"
                         type="password"
                         autoComplete="current-password"
-                        className='input'
+                        className="custom-input"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
-                </div>
-            </Box>
-        </div>
-    )
+                    <ColorButton type="submit" variant="contained" color="primary" disabled={isLoading}>
+                        {isLoading ? 'Logging in...' : 'Login'}
+                    </ColorButton>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                </LoginForm>
+            </form>
+        </Screen>
+    );
 }

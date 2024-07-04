@@ -6,6 +6,6 @@ export const userLogin = async (userInfo) => {
     return await axios.post(`${localURL}/api/users/login/`, userInfo);
 }
 
-export const getUser = async (userInfo) => {
-    return await axios.post(`${localURL}/api/users`, userInfo);
+export const getUser = async (id) => {
+    return await axios.post(`${localURL}/api/users`, id);
 }

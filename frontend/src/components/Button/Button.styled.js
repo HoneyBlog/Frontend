@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.button`   
-    background-color: #BB86FC;
+    background-color: #bea6d8;
     color: #FFFFFF;
     border-radius: 30px;
-    font-size: 1.3rem;
     font-weight: 600;
     border: none;
-    padding: 15px 40px;
     cursor: pointer;
     transition: 0.2s;
+    font-size: ${(props) => props.fontSize || '1.3rem'};
+  padding: ${(props) => props.paddingUp || '15px'} ${(props) => props.paddingRight || '40px'}; 
 
     &:hover
     {
         background-color: #FFFFFF;
-        color: #BB86FC;
+        color: #bea6d8;
     }
 `;
