@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import { Screen, Logo, Title, LoginForm, ColorButton } from './LoginPage.styled';
+import { Screen, Logo, Title, LoginForm } from './LoginPage.styled';
 import { userLogin } from '../../apis/users.api';
+import Button from '../../components/Button/Button';
+import Alert from '@mui/material/Alert';
+
+const errFormMsg = "One of the requirements is not met.";
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
@@ -19,7 +23,7 @@ export default function LoginPage() {
             console.log('Response: ', response);
         } catch (error) {
             console.error('Failed to login:', error);
-            setError('Invalid username or password.');
+            setError(errFormMsg);
         } finally {
             setIsLoading(false);
         }
@@ -53,10 +57,8 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <ColorButton type="submit" variant="contained" color="primary" disabled={isLoading}>
-                        {isLoading ? 'Logging in...' : 'Login'}
-                    </ColorButton>
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    <Button type="submit" variant="contained" text={isLoading ? 'Logging in...' : 'Login'} disabled={isLoading} />
+                    {error && <Alert severity="error" variant="filled">{error}</Alert>}
                 </LoginForm>
             </form>
         </Screen>

@@ -9,7 +9,7 @@ export const ButtonContainer = styled.button`
     cursor: pointer;
     transition: 0.2s;
     font-size: ${(props) => props.fontSize || '1.3rem'};
-  padding: ${(props) => props.paddingUp || '15px'} ${(props) => props.paddingRight || '40px'}; 
+    padding: ${(props) => props.paddingUp || '15px'} ${(props) => props.paddingRight || '40px'}; 
 
     &:hover
     {
