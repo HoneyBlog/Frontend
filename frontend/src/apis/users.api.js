@@ -44,3 +44,28 @@ export const getUser = async (id) => {
         throw error;
     }
 }
+
+export const checkJWTtoken = async () => {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error("Token not found");
+        }
+        
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        };
+
+        const response = await axios.get(`${localURL}/api/users/check-token`, config);
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            throw new Error(`Error: ${response.status}`);
+        }
+    } catch (error) {
+        console.error(`Failed to check JWT token: ${error}`);
+        throw error;
+    }
+}

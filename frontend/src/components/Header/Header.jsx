@@ -6,15 +6,16 @@ const homeIcon = '../../assets/home.png';
 const seachIcon = '../../assets/search.png';
 const profileIcon = '../../assets/user.png';
 const logoutIcon = '../../assets/logout.png';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const user = localStorage.getItem('token') ? localStorage.getItem('token') : null;
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        navigate('/login');
+         // navigate('/login');
+        window.location.href = '/login';
     }
 
     return (
