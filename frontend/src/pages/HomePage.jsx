@@ -54,7 +54,7 @@ const HomePage = () => {
       <Header username={user.username} />
       <div className="container">
         <div className="mainContent">
-          <Postcomponent/>
+          <Postcomponent userId={userId}/>
           <PostContent />
         </div>
         <aside className="sidebar">

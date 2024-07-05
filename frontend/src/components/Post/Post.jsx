@@ -11,7 +11,8 @@ import Button from '../Button/Button'
 import { createPost } from '../../apis/posts.api';
 import "./post.styled.css";
 
-const Postcomponent = () => {
+const Postcomponent = ({userId}) => {
+  
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [textFieldValue, setTextFieldValue] = useState("");
 
@@ -30,7 +31,14 @@ const Postcomponent = () => {
   const handlePost = async () => {
     try {
       console.log('Creating post');
-      await createPost({ content: textFieldValue }); 
+      const postData ={
+        content: textFieldValue,
+        comments_number: 0, 
+        likes_number: 0,
+        author_id: userId
+      }
+
+      await createPost(postData); 
       setTextFieldValue('');
       
     } catch (error) {

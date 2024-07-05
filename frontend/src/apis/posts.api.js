@@ -29,12 +29,8 @@ export const getPosts = async () => {
 
 export const createPost = async (post) => {
     try {
-        const postReq = {
-            content: post.content,
-            author_id: localStorage.getItem('user_id')
-        }
 
-        const response = await axios.post(`${localURL}/api/posts/`, postReq);
+        const response = await axios.post(`${localURL}/api/posts/`, post);
         if (response.status === 201 || response.status === 200) {
             return response.data;
         } else {
