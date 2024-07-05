@@ -15,30 +15,10 @@ import {
   PostFooterIcons
 } from './PostContent.styled';
 import postImage from '../../../assets/postcontent.png'; 
-import { getPosts } from '../../apis/posts.api';
-import { getUser } from '../../apis/users.api';
 
-const PostTemplate = () => {
-  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const fetchedPosts = await getPosts();
-        for (let post of fetchedPosts) {
-          const user = await getUser(post.author_id);
-          post.username = user.username;
-        }
 
-        setPosts(fetchedPosts.reverse());
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-      }
-    };
-
-    fetchPosts();
-  }, []); 
-
+const PostContent = ({ posts }) => {
   return (
     <div>
       {posts.length === 0 ? (
@@ -73,4 +53,4 @@ const PostTemplate = () => {
   );
 };
 
-export default PostTemplate;
+export default PostContent;

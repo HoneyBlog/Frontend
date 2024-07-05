@@ -8,11 +8,9 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import Typography from "@mui/material/Typography";
 import EmojiPicker from "emoji-picker-react";
 import Button from '../Button/Button'
-import { createPost } from '../../apis/posts.api';
 import "./post.styled.css";
 
-const Postcomponent = ({userId}) => {
-  
+const PostComponent = ({ userId, onNewPost }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [textFieldValue, setTextFieldValue] = useState("");
 
@@ -30,17 +28,15 @@ const Postcomponent = ({userId}) => {
 
   const handlePost = async () => {
     try {
-      console.log('Creating post');
-      const postData ={
+      const postData = {
         content: textFieldValue,
-        comments_number: 0, 
+        comments_number: 0,
         likes_number: 0,
         author_id: userId
-      }
+      };
 
-      await createPost(postData); 
+      await onNewPost(postData);
       setTextFieldValue('');
-      
     } catch (error) {
       console.error('Failed to create post:', error);
     }
@@ -85,7 +81,7 @@ const Postcomponent = ({userId}) => {
           paddingUpDown="10px"
           paddingRightLeft="20px"
           fontSize="0.9rem"
-          onClick={handlePost} 
+          onClick={handlePost}
         />
       </div>
       <div className="emoji-picker-container">
@@ -98,4 +94,4 @@ const Postcomponent = ({userId}) => {
   );
 };
 
-export default Postcomponent;
+export default PostComponent;
