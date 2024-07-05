@@ -4,6 +4,7 @@ import Postcomponent from '../components/Post/Post';
 import Search from '../components/Search/Search';
 import './HomePage.styled.css';
 import SearchContent from '../components/SearchContent/SearchContent';
+import PostContent from '../components/PostContent/PostContent';
 
 const HomePage = () => {
   const handleSearchChange = (e) => {
@@ -16,6 +17,7 @@ const HomePage = () => {
       <div className="container">
         <div className="mainContent">
           <Postcomponent />
+          <PostContent />
         </div>
         <aside className="sidebar">
         <div className="search-container">

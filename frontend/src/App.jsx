@@ -1,5 +1,5 @@
 import "./App.css";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import LoginPage from "./pages/LoginPage/loginPage";
 import HomePage from "./pages/HomePage";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
