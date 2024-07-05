@@ -15,6 +15,10 @@ export default function LoginPage() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+    if (localStorage.getItem('token')) {
+        window.location.href = '/';
+    }
+
     const verfiyForm = () => {  
         if (username === '' || password === '') {
             setError(errFormMsg);

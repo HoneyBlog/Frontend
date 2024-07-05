@@ -6,9 +6,10 @@ export const userLogin = async (username, password) => {
     try {
         const response = await axios.post(`${localURL}/api/users/login/`, { username, password });
         if (response.status === 200) {
-            const { token } = response.data;  // Assuming the API returns a 'token' field
+            const { token, user_id } = response.data;  // Assuming the API returns a 'token' field
             if (token) {
                 localStorage.setItem('token', token);  // Store the token in localStorage
+                localStorage.setItem('user_id', user_id);  // Store the user_id in localStorage
             }
             return true;  // Return the entire response data
         } else {
