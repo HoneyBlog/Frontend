@@ -10,6 +10,7 @@
 //     return await axios.post(`${localURL}/api/users`, userInfo);
 // }
 
+import { common } from '@mui/material/colors';
 import axios from 'axios';
 
 const localURL = "http://localhost:8000";
@@ -35,6 +36,27 @@ export const getPosts = async () => {
         }
     } catch (error) {
         console.error(`Failed to get posts: ${error}`);
+        throw error;
+    }
+}
+
+export const createPost = async (post) => {
+    try {
+        const postReq = {
+            content: post.content,
+            comments_number: 0,
+            likes_number: 0,
+            author_id: localStorage.getItem('user_id')
+        }
+
+        const response = await axios.post(`${localURL}/api/posts/`, postReq);
+        if (response.status === 201 || response.status === 200) {
+            return response.data;
+        } else {
+            throw new Error(`Error: ${response.status}`);
+        }
+    } catch (error) {
+        console.error(`Failed to create post: ${error}`);
         throw error;
     }
 }
