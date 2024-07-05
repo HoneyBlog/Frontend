@@ -1,16 +1,3 @@
-// import axios from 'axios';
-
-// const localURL = "http://localhost:5000";
-
-// export const userLogin = async (userInfo) => {
-//     return await axios.post(`${localURL}/api/users/login/`, userInfo);
-// }
-
-// export const getUser = async (userInfo) => {
-//     return await axios.post(`${localURL}/api/users`, userInfo);
-// }
-
-import { common } from '@mui/material/colors';
 import axios from 'axios';
 
 const localURL = "http://localhost:8000";
@@ -44,8 +31,6 @@ export const createPost = async (post) => {
     try {
         const postReq = {
             content: post.content,
-            comments_number: 0,
-            likes_number: 0,
             author_id: localStorage.getItem('user_id')
         }
 

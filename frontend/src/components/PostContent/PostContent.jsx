@@ -22,16 +22,14 @@ const PostTemplate = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    // Fetch posts when component mounts
     const fetchPosts = async () => {
       try {
-        const fetchedPosts = await getPosts(); // Assuming getPosts() returns a promise
-        // add the username to the post
+        const fetchedPosts = await getPosts();
         for (let post of fetchedPosts) {
           const user = await getUser(post.author_id);
           post.username = user.username;
         }
-        // Reverse the array of posts
+
         setPosts(fetchedPosts.reverse());
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -39,7 +37,7 @@ const PostTemplate = () => {
     };
 
     fetchPosts();
-  }, []); // Run once when component mounts
+  }, []); 
 
   return (
     <div>

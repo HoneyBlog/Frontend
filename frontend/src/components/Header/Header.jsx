@@ -1,34 +1,19 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Avatar from '@mui/material/Avatar';
 import { FixedHeaderContent, HeaderContainer, HeaderItemsContainer, NavItem, NavText, SelectedNavText, Line, IconStyle, UsenameStyle } from './Header.styled';
-import {getUser} from '../../apis/users.api'
+import { getUser } from '../../apis/users.api'
 import Button from '../Button/Button';
 const homeIcon = '../../assets/home.png';
 const seachIcon = '../../assets/search.png';
 const profileIcon = '../../assets/user.png';
 const logoutIcon = '../../assets/logout.png';
 
-const Header = () => {
-    const [user, setUser] = useState({});
-    const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
-    const userId = localStorage.getItem('user_id') ? localStorage.getItem('user_id') : null;
-
+const Header = ({ username }) => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         window.location.href = '/login';
     }
 
-    useEffect(() => {
-        if (token && userId) {
-            getUser(userId)
-            .then((data) => {
-                setUser(data);
-            })
-            .catch((error) => {
-                console.error(`Failed to get user: ${error}`);
-            });
-        }
-    }, []);
 
     return (
         <FixedHeaderContent>
@@ -36,7 +21,7 @@ const Header = () => {
                 <HeaderItemsContainer>
                     <Avatar alt="Avater" src="" sx={{ width: 120, height: 120 }} />
                 </HeaderItemsContainer>
-                    <UsenameStyle>{user ? '@' + user.username : ''}</UsenameStyle>
+                <UsenameStyle>{username ? '@' + username : ''}</UsenameStyle>
                 <HeaderItemsContainer>
                     <NavItem to="/">
                         <IconStyle src={homeIcon} alt="Home" />
@@ -55,7 +40,7 @@ const Header = () => {
                         <NavText>Logout</NavText>
                     </NavItem>
                 </HeaderItemsContainer>
-                <Button text="Post"  paddingUpDown='15px' paddingRightLeft='40px' fontSize='1.3rem'></Button>
+                <Button text="Post" paddingUpDown='15px' paddingRightLeft='40px' fontSize='1.3rem'></Button>
             </HeaderContainer>
             <Line>
                 <line x1="0" y1="0" x2="0" y2="100%" />

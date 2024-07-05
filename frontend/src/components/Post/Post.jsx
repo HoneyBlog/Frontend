@@ -30,9 +30,9 @@ const Postcomponent = () => {
   const handlePost = async () => {
     try {
       console.log('Creating post');
-      await createPost({ content: textFieldValue }); // Assuming createPost accepts an object with 'content' field
+      await createPost({ content: textFieldValue }); 
       setTextFieldValue('');
-      // Update state or trigger a refresh of posts if needed without reloading the entire page
+      
     } catch (error) {
       console.error('Failed to create post:', error);
     }
@@ -77,7 +77,7 @@ const Postcomponent = () => {
           paddingUpDown="10px"
           paddingRightLeft="20px"
           fontSize="0.9rem"
-          onClick={handlePost} // Directly pass handlePost function here
+          onClick={handlePost} 
         />
       </div>
       <div className="emoji-picker-container">

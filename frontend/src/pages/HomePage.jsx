@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header/Header';
 import Postcomponent from '../components/Post/Post';
 import Search from '../components/Search/Search';
@@ -7,9 +7,25 @@ import SearchContent from '../components/SearchContent/SearchContent';
 import PostContent from '../components/PostContent/PostContent';
 import { checkJWTtoken } from '../apis/users.api';
 import { useNavigate } from 'react-router-dom';
-
+import { getUser } from '../apis/users.api';
 
 const HomePage = () => {
+  const [user, setUser] = useState({});
+  const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+  const userId = localStorage.getItem('user_id') ? localStorage.getItem('user_id') : null;
+
+  useEffect(() => {
+    if (token && userId) {
+        getUser(userId)
+        .then((data) => {
+            setUser(data);
+        })
+        .catch((error) => {
+            console.error(`Failed to get user: ${error}`);
+        });
+    }
+}, []);
+
   const handleSearchChange = (e) => {
     console.log(e.target.value);
   };
@@ -35,10 +51,10 @@ const HomePage = () => {
 
   return (
     <div id="warpper">
-      <Header />
+      <Header username={user.username} />
       <div className="container">
         <div className="mainContent">
-          <Postcomponent />
+          <Postcomponent/>
           <PostContent />
         </div>
         <aside className="sidebar">
