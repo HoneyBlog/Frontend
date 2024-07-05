@@ -30,6 +30,13 @@ export const HeaderItemsContainer = styled.div`
     gap: 30px;
 `;
 
+
+export const UsenameStyle = styled.h1`
+    color: #bea6d8;
+    font-size: 2rem;
+    margin: 0;
+`;
+
 export const NavItem = styled(RouterLink)`
     display: flex;
     flex-flow: row;

@@ -1,22 +1,34 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Avatar from '@mui/material/Avatar';
-import { FixedHeaderContent, HeaderContainer, HeaderItemsContainer, NavItem, NavText, SelectedNavText, Line, IconStyle } from './Header.styled';
+import { FixedHeaderContent, HeaderContainer, HeaderItemsContainer, NavItem, NavText, SelectedNavText, Line, IconStyle, UsenameStyle } from './Header.styled';
+import {getUser} from '../../apis/users.api'
 import Button from '../Button/Button';
 const homeIcon = '../../assets/home.png';
 const seachIcon = '../../assets/search.png';
 const profileIcon = '../../assets/user.png';
 const logoutIcon = '../../assets/logout.png';
-// import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    // const navigate = useNavigate();
-    const user = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+    const [user, setUser] = useState({});
+    const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+    const userId = localStorage.getItem('user_id') ? localStorage.getItem('user_id') : null;
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-         // navigate('/login');
         window.location.href = '/login';
     }
+
+    useEffect(() => {
+        if (token && userId) {
+            getUser(userId)
+            .then((data) => {
+                setUser(data);
+            })
+            .catch((error) => {
+                console.error(`Failed to get user: ${error}`);
+            });
+        }
+    }, []);
 
     return (
         <FixedHeaderContent>
@@ -24,6 +36,7 @@ const Header = () => {
                 <HeaderItemsContainer>
                     <Avatar alt="Avater" src="" sx={{ width: 120, height: 120 }} />
                 </HeaderItemsContainer>
+                    <UsenameStyle>{user ? '@' + user.username : ''}</UsenameStyle>
                 <HeaderItemsContainer>
                     <NavItem to="/">
                         <IconStyle src={homeIcon} alt="Home" />
