@@ -17,27 +17,34 @@ const Postcomponent = () => {
   const [textFieldValue, setTextFieldValue] = useState("");
 
   const handleEmojiClick = (emojiObject, event) => {
-    setTextFieldValue((prevValue) => prevValue + emojiObject.emoji);
+    if (textFieldValue.length < 300) {
+      setTextFieldValue((prevValue) => prevValue + emojiObject.emoji);
+    }
+  };
+
+  const handleChange = (e) => {
+    if (e.target.value.length <= 300) {
+      setTextFieldValue(e.target.value);
+    }
   };
 
   return (
     <div className="post-container">
       <div className="post-row1">
         <Avatar alt="User Avatar" className="post-avatar" />
-          <TextField
-            placeholder="What's happening?"
-            multiline
-            maxRows={4}
-            variant="standard"
-            InputProps={{
-              disableUnderline: true,
-              style: { color: "white" },
-            }}
-            className="post-textfield"
-            value={textFieldValue}
-            onChange={(e) => setTextFieldValue(e.target.value)}
-          />
-
+        <TextField
+          placeholder="What's happening?"
+          multiline
+          maxRows={4}
+          variant="standard"
+          InputProps={{
+            disableUnderline: true,
+            style: { color: "white" },
+          }}
+          className="post-textfield"
+          value={textFieldValue}
+          onChange={handleChange}
+        />
       </div>
       <div className="post-row2">
         <div>
@@ -54,11 +61,20 @@ const Postcomponent = () => {
             <EmojiEmotionsIcon className="post-icon" />
           </IconButton>
         </div>
-        <Button variant="contained" text="Post" paddingUpDown="10px" paddingRightLeft="20px" fontSize="0.9rem" />
+        <Button
+          variant="contained"
+          text="Post"
+          paddingUpDown="10px"
+          paddingRightLeft="20px"
+          fontSize="0.9rem"
+        />
       </div>
       <div className="emoji-picker-container">
         {showEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick} />}
       </div>
+      <Typography variant="caption" style={{ color: "white" }}>
+        {textFieldValue.length}/300
+      </Typography>
     </div>
   );
 };
