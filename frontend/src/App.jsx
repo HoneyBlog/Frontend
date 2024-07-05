@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
+
 function App() {
   const user = localStorage.getItem('token') ? localStorage.getItem('token') : null;
 
