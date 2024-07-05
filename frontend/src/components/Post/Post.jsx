@@ -8,9 +8,8 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import Typography from "@mui/material/Typography";
 import EmojiPicker from "emoji-picker-react";
 import Button from '../Button/Button'
-
+import { createPost } from '../../apis/posts.api';
 import "./post.styled.css";
-
 
 const Postcomponent = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -25,6 +24,17 @@ const Postcomponent = () => {
   const handleChange = (e) => {
     if (e.target.value.length <= 300) {
       setTextFieldValue(e.target.value);
+    }
+  };
+
+  const handlePost = async () => {
+    try {
+      console.log('Creating post');
+      await createPost({ content: textFieldValue }); // Assuming createPost accepts an object with 'content' field
+      setTextFieldValue('');
+      // Update state or trigger a refresh of posts if needed without reloading the entire page
+    } catch (error) {
+      console.error('Failed to create post:', error);
     }
   };
 
@@ -67,6 +77,7 @@ const Postcomponent = () => {
           paddingUpDown="10px"
           paddingRightLeft="20px"
           fontSize="0.9rem"
+          onClick={handlePost} // Directly pass handlePost function here
         />
       </div>
       <div className="emoji-picker-container">
