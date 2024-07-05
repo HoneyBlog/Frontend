@@ -14,7 +14,6 @@ const Header = ({ username }) => {
         window.location.href = '/login';
     }
 
-
     return (
         <FixedHeaderContent>
             <HeaderContainer>
