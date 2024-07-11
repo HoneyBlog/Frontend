@@ -1,17 +1,17 @@
 import axios from 'axios';
 
-const localURL = "http://localhost:8000";
+const honeypotURL = "http://localhost:9000";
 
 export const userLogin = async (username, password) => {
     try {
-        const response = await axios.post(`${localURL}/api/users/login/`, { username, password });
+        const response = await axios.post(`${honeypotURL}/api/users/login/`, { username, password });
         if (response.status === 200) {
-            const { token, user_id } = response.data;  // Assuming the API returns a 'token' field
+            const { token, user_id } = response.data;
             if (token) {
-                localStorage.setItem('token', token);  // Store the token in localStorage
-                localStorage.setItem('user_id', user_id);  // Store the user_id in localStorage
+                localStorage.setItem('token', token);
+                localStorage.setItem('user_id', user_id);
             }
-            return true;  // Return the entire response data
+            return true;
         } else {
             throw new Error(`Error: ${response.status}`);
         }
@@ -34,7 +34,7 @@ export const getUser = async (id) => {
             }
         };
 
-        const response = await axios.get(`${localURL}/api/users/${id}`, config);
+        const response = await axios.get(`${honeypotURL}/api/users/${id}`, config);
         if (response.status === 200) {
             return response.data;
         } else {
@@ -59,7 +59,7 @@ export const checkJWTtoken = async () => {
             }
         };
 
-        const response = await axios.get(`${localURL}/api/users/check-token`, config);
+        const response = await axios.get(`${honeypotURL}/api/users/check-token/`, config);
         if (response.status === 200) {
             return response.data;
         } else {

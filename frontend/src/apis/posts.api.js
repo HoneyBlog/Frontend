@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const localURL = "http://localhost:8000";
+const honeypotURL = "http://localhost:9000";
 
 export const getPosts = async () => {
     try {
@@ -15,7 +15,7 @@ export const getPosts = async () => {
             }
         };
 
-        const response = await axios.get(`${localURL}/api/posts/`, config);
+        const response = await axios.get(`${honeypotURL}/api/posts/`, config);
         if (response.status === 200) {
             return response.data;
         } else {
@@ -29,8 +29,7 @@ export const getPosts = async () => {
 
 export const createPost = async (post) => {
     try {
-
-        const response = await axios.post(`${localURL}/api/posts/`, post);
+        const response = await axios.post(`${honeypotURL}/api/posts/`, post);
         if (response.status === 201 || response.status === 200) {
             return response.data;
         } else {
