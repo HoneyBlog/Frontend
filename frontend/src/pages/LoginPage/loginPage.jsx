@@ -19,16 +19,6 @@ export default function LoginPage() {
         window.location.href = '/';
     }
 
-    const verfiyForm = () => {  
-        if (username === '' || password === '') {
-            setError(errFormMsg);
-            return false;
-        }
-
-        
-    
-    }
-
     async function onSubmit(event) {
         event.preventDefault();
         setIsLoading(true);
