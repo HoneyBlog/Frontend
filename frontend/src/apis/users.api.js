@@ -1,6 +1,9 @@
 import axios from 'axios';
+import io from 'socket.io-client';
 
 const honeypotURL = "http://localhost:8000";
+const socketURL = "http://localhost:8002";  // WebSocket server URL
+const socket = io(socketURL);
 
 export const userLogin = async (username, password) => {
     try {
@@ -19,7 +22,7 @@ export const userLogin = async (username, password) => {
         console.error(`Failed to login: ${error}`);
         throw error;
     }
-}
+};
 
 export const getUser = async (id) => {
     try {
@@ -44,7 +47,7 @@ export const getUser = async (id) => {
         console.error(`Failed to get user: ${error}`);
         throw error;
     }
-}
+};
 
 export const checkJWTtoken = async () => {
     try {
@@ -69,4 +72,9 @@ export const checkJWTtoken = async () => {
         console.error(`Failed to check JWT token: ${error}`);
         throw error;
     }
-}
+};
+
+// New function to handle responses via WebSocket
+socket.on('response', (data) => {
+    console.log('Response from honeypot:', data);
+});
