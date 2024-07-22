@@ -63,16 +63,9 @@ export const checkJWTtoken = async () => {
             throw new Error("Token not found");
         }
 
-        if(token == "session=1") {
-            return { success: true, data: { message: "Token is valid" } };
-        }       
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        };
-
-        const response = await axios.get(`${honeypotURL}/api/users/check-token/`, config);
+        const response = await axios.get(`${honeypotURL}/api/users/check-token/`, {
+            params: { token }
+        });
         if (response.status === 200) {
             return response.data;
         } else {
@@ -88,8 +81,6 @@ export const checkJWTtoken = async () => {
 socket.on('response', (data) => {
     console.log('Response from honeypot:', data);
     if (loginCallback) {
-        // set a random cookie
-        document.cookie = "session=1";
         loginCallback({ success: true, data });
         loginCallback = null; // Reset the callback after use
     }
