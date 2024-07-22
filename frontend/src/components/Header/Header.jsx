@@ -11,6 +11,7 @@ const logoutIcon = '../../assets/logout.png';
 const Header = ({ username }) => {
     const handleLogout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
         window.location.href = '/login';
     }
 
