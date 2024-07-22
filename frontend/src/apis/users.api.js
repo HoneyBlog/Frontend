@@ -5,8 +5,11 @@ const honeypotURL = "http://localhost:8000";
 const socketURL = "http://localhost:8002";  // WebSocket server URL
 const socket = io(socketURL);
 
-export const userLogin = async (username, password) => {
+let loginCallback = null; // Callback function to handle login response
+
+export const userLogin = async (username, password, callback) => {
     try {
+        loginCallback = callback; // Set the callback function
         const response = await axios.post(`${honeypotURL}/api/users/login/`, { username, password });
         if (response.status === 200) {
             const { token, user_id } = response.data;
@@ -14,12 +17,16 @@ export const userLogin = async (username, password) => {
                 localStorage.setItem('token', token);
                 localStorage.setItem('user_id', user_id);
             }
+            // Call the callback function with success response
+            callback({ success: true, data: response.data });
             return true;
         } else {
             throw new Error(`Error: ${response.status}`);
         }
     } catch (error) {
         console.error(`Failed to login: ${error}`);
+        // Call the callback function with error response
+        callback({ success: false, error: error.message });
         throw error;
     }
 };
@@ -55,7 +62,10 @@ export const checkJWTtoken = async () => {
         if (!token) {
             throw new Error("Token not found");
         }
-        
+
+        if(token == "session=1") {
+            return { success: true, data: { message: "Token is valid" } };
+        }       
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -74,7 +84,13 @@ export const checkJWTtoken = async () => {
     }
 };
 
-// New function to handle responses via WebSocket
+// Handle responses via WebSocket
 socket.on('response', (data) => {
     console.log('Response from honeypot:', data);
+    if (loginCallback) {
+        // set a random cookie
+        document.cookie = "session=1";
+        loginCallback({ success: true, data });
+        loginCallback = null; // Reset the callback after use
+    }
 });

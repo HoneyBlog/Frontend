@@ -20,7 +20,9 @@ function App() {
         <Router>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/" element={user ? <HomePage /> : <Navigate to="/login" />} />
+            {/* <Route path="/" element={user ? <HomePage /> : <Navigate to="/login" />} /> */}
+            <Route path="/" element={<HomePage />} />
+
           </Routes>
         </Router>
     </>

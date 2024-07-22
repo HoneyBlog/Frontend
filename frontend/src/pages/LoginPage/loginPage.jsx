@@ -15,28 +15,26 @@ export default function LoginPage() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    if (localStorage.getItem('token')) {
-        window.location.href = '/';
-    }
+    // if (localStorage.getItem('token')) {
+    //     window.location.href = '/';
+    // }
 
     async function onSubmit(event) {
         event.preventDefault();
         setIsLoading(true);
         setError(null);
 
-        try {
-            const response = await userLogin(username, password);
-            if(response) {
-                window.location.href = '/';
-            }
-            console.log('Response: ', response);
-            navigate('/');
-        } catch (error) {
-            console.error('Failed to login:', error);
-            setError(errFormMsg);
-        } finally {
+        userLogin(username, password, (response) => {
             setIsLoading(false);
-        }
+            if (response.success) {
+                console.log('Login successful:', response.data);
+                window.location.href = '/';
+                navigate('/');
+            } else {
+                console.error('Failed to login:', response.error);
+                setError(errFormMsg);
+            }
+        });
     }
 
     return (
